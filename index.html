@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chepa7776 — Видео</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>🎥 Видео от Chepa7776</h1>
+    <p>Все мои видео — на одной странице</p>
+    <a href="#" class="donate-button">💰 Поддержать (скоро)</a>
+  </header>
+
+  <main id="video-container"></main>
+
+  <footer>
+    <p>© 2025 Chepa7776</p>
+  </footer>
+
+  <script>
+    fetch('videos.json')
+      .then(response => response.json())
+      .then(videos => {
+        const container = document.getElementById('video-container');
+        videos.forEach(video => {
+          const videoDiv = document.createElement('div');
+          videoDiv.className = 'video-item';
+          videoDiv.innerHTML = `
+            <iframe src="https://www.youtube.com/embed/${video.id}" frameborder="0" allowfullscreen></iframe>
+            <h3>${video.title}</h3>
+          `;
+          container.appendChild(videoDiv);
+        });
+      });
+  </script>
+</body>
+</html>
